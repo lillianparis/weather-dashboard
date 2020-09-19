@@ -11,3 +11,15 @@
 // THEN I am again presented with current and future conditions for that city
 // WHEN I open the weather dashboard
 // THEN I am presented with the last searched city forecast
+
+
+// source the key
+let queryURL = "https://openweathermap.org/" + weather + "397d04ceacaaf4ab52f27b0693cc831a";
+
+// Make ajax call
+$.ajax({
+    url: queryURL,
+    method: "GET"
+}).then(function (response) {
+    console.log(response)
+});
