@@ -14,24 +14,16 @@
 
 let city ="";
 // source the key
-let queryURL = "https://openweathermap.org/" + weather + "397d04ceacaaf4ab52f27b0693cc831a";
-let citiesId = document.getElementById("search");
-let city = [];
-let current_date = moment().format();
-input();
+$("button").on("click", function () {
 
-function input(){
-    let search_history = JSON.parse(localstorage.getItem("cities"));
-
-    if (search_history !== null){
-        search_history = save
-    }
-    renderButtons();
-}
-// Make ajax call
-$.ajax({
-    url: queryURL,
-    method: "GET"
-}).then(function (response) {
-    console.log(response)
+    let search = $(this).attr("#search");
+    let api_key = "";
+    let queryURL = api.openweathermap.org/data/2.5/weather?id={search}&appid={397d04ceacaaf4ab52f27b0693cc831a}
+        // Make ajax call
+        $.ajax({
+            url: queryURL,
+            method: "GET"
+        }).then(function (response) {
+            console.log(response)
+        });
 });
