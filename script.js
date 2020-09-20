@@ -17,7 +17,7 @@ let city ="";
 $("button").on("click", function () {
 
     let search = $(this).attr("#search");
-    weather = "https://api.openweathermap.org/data/2.5/weather?q=" + search + "&AAPID=" + "397d04ceacaaf4ab52f27b0693cc831a";
+    let weather = "api.openweathermap.org/data/2.5/weather?q=" + city + "&appid=" + "397d04ceacaaf4ab52f27b0693cc831a";
         // Make ajax call
        console.log(weather)
 });
