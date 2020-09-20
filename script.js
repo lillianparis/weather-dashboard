@@ -12,10 +12,22 @@
 // WHEN I open the weather dashboard
 // THEN I am presented with the last searched city forecast
 
-
+let city ="";
 // source the key
 let queryURL = "https://openweathermap.org/" + weather + "397d04ceacaaf4ab52f27b0693cc831a";
+let citiesId = document.getElementById("search");
+let city = [];
+let current_date = moment().format();
+input();
 
+function input(){
+    let search_history = JSON.parse(localstorage.getItem("cities"));
+
+    if (search_history !== null){
+        search_history = save
+    }
+    renderButtons();
+}
 // Make ajax call
 $.ajax({
     url: queryURL,
