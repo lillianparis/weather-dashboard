@@ -12,7 +12,6 @@
 // WHEN I open the weather dashboard
 // THEN I am presented with the last searched city forecast
 
-
 // api.openweathermap.org/data/2.5/weather?q={city name}&appid={API key}
 // api.openweathermap.org/data/2.5/weather?q={city name},{state code}&appid={API key}
 // api.openweathermap.org/data/2.5/weather?q={city name},{state code},{country code}&appid={API key}
@@ -20,16 +19,23 @@
 function indexPage() {
     let input = document.getElementById("city-input");
     let search = document.getElementById("search");
-    let name = document.getElementById("")
+    let name = document.getElementById("");
     let weatherPicture = document.getElementById("");
     let searchHistory = JSON.parse(localStorage.getItem("search")) || [];
     console.log(searchHistory);
 
     let APIKey = "397d04ceacaaf4ab52f27b0693cc831a";
-
-    function fetchWeather(cityName) {
-        let queryURL = "https://api.openweathermap.org/data/2.5/weather?q=" + cityName + "&appid=" + APIKey;
-    }
+    let queryURL =
+        "https://api.openweathermap.org/data/2.5/weather?q=" +
+        cityName +
+        "&appid=" +
+        APIKey;
+    $.ajax({
+        url: queryURL,
+        method: "GET",
+    }).then(function (response) {
+        console.log(response);
+    });
 }
 
 // source the key
@@ -44,4 +50,3 @@ function indexPage() {
 
 // $(document).ready(function () {
 //     let city = $('<div>').addClass('')
-// })
