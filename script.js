@@ -22,14 +22,12 @@ function indexPage() {
     let name = document.getElementById("");
     let weatherPicture = document.getElementById("");
     let searchHistory = JSON.parse(localStorage.getItem("search")) || [];
+    var cityName = 'Dallas';
     console.log(searchHistory);
 
     let APIKey = "397d04ceacaaf4ab52f27b0693cc831a";
-    let queryURL =
-        "https://api.openweathermap.org/data/2.5/weather?q=" +
-        cityName +
-        "&appid=" +
-        APIKey;
+    let queryURL = "https://api.openweathermap.org/data/2.5/weather?q=" + cityName + "&appid=" + APIKey;
+
     $.ajax({
         url: queryURL,
         method: "GET",
@@ -37,6 +35,7 @@ function indexPage() {
         console.log(response);
     });
 }
+indexPage();
 
 // source the key
 // $("button").on("click", function () {
