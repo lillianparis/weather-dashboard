@@ -50,7 +50,7 @@ $(document).ready(function () {
         });
         // Grabbing for the several day forecast that will be displayed in the cards in the HTML
 
-        let queryURL2 = "https://api.openweathermap.org/data/2.5/forecast?q=" + cardTitle + "&appid=" + api_key;
+        let queryURL2 = "https://api.openweathermap.org/data/2.5/forecast?q=" + cardTitle + "&appid=" + APIkey;
         // Call to the second url so that multiple days can be displayed 
         $.ajax({
             url: queryURL2,
