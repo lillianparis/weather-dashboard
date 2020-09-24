@@ -17,49 +17,51 @@
 // api.openweathermap.org/data/2.5/weather?q={city name},{state code},{country code}&appid={API key}
 
 // Added in a document ready function
-$(document).ready(function(){
+$(document).ready(function () {
 
     let input = document.getElementById("city-input");
     let search = document.getElementById("search");
     let cardTitle = document.getElementById("date");
     let weatherPicture = document.getElementById("");
     let searchHistory = JSON.parse(localStorage.getItem("search")) || [];
-   
+
     console.log(searchHistory);
-// Created a function to grab the input and search
-function citySearch () { 
-    let cityName = input.value.trim()
-    console.log(cityName);
-    let APIKey = "397d04ceacaaf4ab52f27b0693cc831a";
-    let queryURL = "https://api.openweathermap.org/data/2.5/weather?q=" + cityName + "&appid=" + APIKey;
-// Fixed ajax error by adding a CDN into the bottom of the html page 
-    $.ajax({
-        url: queryURL,
-        method: "GET",
-    }).then(function (response) {
-        // Start grabbing HTML elements and put data into them
-        console.log(response);
-        // These calls, take input from the jumbotron and display them to the front end
-        $("#nameOfCity").text(response.name);
-        let tempF = (response.main.temp - 273.15) * 1.80 + 32
-        $("#temp").text("Temperature: " + Math.floor(tempF) + " °F")
+    // Created a function to grab the input and search
+    function citySearch() {
+        let cityName = input.value.trim()
+        console.log(cityName);
+        let APIKey = "397d04ceacaaf4ab52f27b0693cc831a";
+        let queryURL = "https://api.openweathermap.org/data/2.5/weather?q=" + cityName + "&appid=" + APIKey;
+        // Fixed ajax error by adding a CDN into the bottom of the html page 
+        $.ajax({
+            url: queryURL,
+            method: "GET",
+        }).then(function (response) {
+            // Start grabbing HTML elements and put data into them
+            console.log(response);
+            // These calls, take input from the jumbotron and display them to the front end
+            $("#nameOfCity").text(response.name);
+            let tempF = (response.main.temp - 273.15) * 1.80 + 32
+            $("#temp").text("Temperature: " + Math.floor(tempF) + " °F")
 
-        $("#humidity").text("Humidity: " + response.main.humidity + "%")
+            $("#humidity").text("Humidity: " + response.main.humidity + "%")
 
-        $("#wind").text("Wind speed: " + response.wind.speed + " MPH")
-    });
-    // Grabbing for the 4 day forecast that will be displayed in the cards in the HTML
-    let queryURL2 = "https://api.openweathermap.org/data/2.5/forecast?q=" + cardTitle + "&appid=" + api_key
-    // Call to the second url so that multiple days can be displayed 
-    $.ajax({
-        url: queryURL2,
-        method: "GET"
-    })
-    // Call to the Html and display on the front end 
- 
-} 
+            $("#wind").text("Wind speed: " + response.wind.speed + " MPH")
+        });
+        // Grabbing for the several day forecast that will be displayed in the cards in the HTML
 
-search.addEventListener("click", citySearch)
+        let queryURL2 = "https://api.openweathermap.org/data/2.5/forecast?q=" + cardTitle + "&appid=" + api_key;
+        // Call to the second url so that multiple days can be displayed 
+        $.ajax({
+            url: queryURL2,
+            method: "GET"
+        })
+        console.log(response)
+        // Call to the Html and display on the front end 
+
+    }
+
+    search.addEventListener("click", citySearch)
 
 })
 
