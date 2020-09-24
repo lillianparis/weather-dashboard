@@ -15,8 +15,9 @@
 // api.openweathermap.org/data/2.5/weather?q={city name}&appid={API key}
 // api.openweathermap.org/data/2.5/weather?q={city name},{state code}&appid={API key}
 // api.openweathermap.org/data/2.5/weather?q={city name},{state code},{country code}&appid={API key}
-$(document).ready(function(){
 
+// Added in a document ready function
+$(document).ready(function(){
 
     let input = document.getElementById("city-input");
     let search = document.getElementById("search");
@@ -36,7 +37,16 @@ function citySearch () {
         url: queryURL,
         method: "GET",
     }).then(function (response) {
+        // Start grabbing HTML elements and put data into them
         console.log(response);
+        // These calls, take input from the jumbotron and display them to the front end
+        $("#nameOfCity").text(response.name);
+        let tempF = (response.main.temp - 273.15) * 1.80 + 32
+        $("#temp").text("Temperature: " + Math.floor(tempF) + " °F")
+
+        $("#humidity").text("Humidity: " + response.main.humidity + "%")
+
+        $("#wind").text("Wind speed: " + response.wind.speed + " MPH")
     });
     
 } 
@@ -44,15 +54,4 @@ function citySearch () {
 search.addEventListener("click", citySearch)
 
 })
-// source the key
-// $("button").on("click", function () {
 
-//     let search = $(this).attr("#search");
-//     // let weather = "api.openweathermap.org/data/2.5/weather?q=" + city + "&appid=" + "397d04ceacaaf4ab52f27b0693cc831a";
-
-//     console.log(search);
-//     console.log(weather);
-// });
-
-// $(document).ready(function () {
-//     let city = $('<div>').addClass('')
