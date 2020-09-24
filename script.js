@@ -15,6 +15,9 @@
 // api.openweathermap.org/data/2.5/weather?q={city name}&appid={API key}
 // api.openweathermap.org/data/2.5/weather?q={city name},{state code}&appid={API key}
 // api.openweathermap.org/data/2.5/weather?q={city name},{state code},{country code}&appid={API key}
+$(document).ready(function(){
+
+
 
 function indexPage() {
     let input = document.getElementById("city-input");
@@ -37,6 +40,7 @@ function indexPage() {
 }
 indexPage();
 
+})
 // source the key
 // $("button").on("click", function () {
 
