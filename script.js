@@ -18,16 +18,17 @@
 $(document).ready(function(){
 
 
-
-function indexPage() {
     let input = document.getElementById("city-input");
     let search = document.getElementById("search");
     let name = document.getElementById("");
     let weatherPicture = document.getElementById("");
     let searchHistory = JSON.parse(localStorage.getItem("search")) || [];
-    var cityName = 'Dallas';
+   
     console.log(searchHistory);
 
+function citySearch () { 
+    let cityName = input.value.trim()
+    console.log(cityName);
     let APIKey = "397d04ceacaaf4ab52f27b0693cc831a";
     let queryURL = "https://api.openweathermap.org/data/2.5/weather?q=" + cityName + "&appid=" + APIKey;
 
@@ -37,8 +38,10 @@ function indexPage() {
     }).then(function (response) {
         console.log(response);
     });
-}
-indexPage();
+    
+} 
+
+search.addEventListener("click", citySearch)
 
 })
 // source the key
