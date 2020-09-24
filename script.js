@@ -56,7 +56,7 @@ $(document).ready(function () {
             url: queryURL2,
             method: "GET"
         })
-    
+        console.log(cardTitle)
         // Call to the Html and display on the front end 
 
     }
