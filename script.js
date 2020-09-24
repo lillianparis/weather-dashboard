@@ -25,13 +25,13 @@ $(document).ready(function(){
     let searchHistory = JSON.parse(localStorage.getItem("search")) || [];
    
     console.log(searchHistory);
-
+// Created a function to grab the input and search
 function citySearch () { 
     let cityName = input.value.trim()
     console.log(cityName);
     let APIKey = "397d04ceacaaf4ab52f27b0693cc831a";
     let queryURL = "https://api.openweathermap.org/data/2.5/weather?q=" + cityName + "&appid=" + APIKey;
-
+// Fixed ajax error by adding a CDN into the bottom of the html page 
     $.ajax({
         url: queryURL,
         method: "GET",
