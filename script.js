@@ -21,7 +21,7 @@ $(document).ready(function(){
 
     let input = document.getElementById("city-input");
     let search = document.getElementById("search");
-    let name = document.getElementById("");
+    let cardTitle = document.getElementById("date");
     let weatherPicture = document.getElementById("");
     let searchHistory = JSON.parse(localStorage.getItem("search")) || [];
    
@@ -48,7 +48,15 @@ function citySearch () {
 
         $("#wind").text("Wind speed: " + response.wind.speed + " MPH")
     });
-    
+    // Grabbing for the 4 day forecast that will be displayed in the cards in the HTML
+    let queryURL2 = "https://api.openweathermap.org/data/2.5/forecast?q=" + cardTitle + "&appid=" + api_key
+    // Call to the second url so that multiple days can be displayed 
+    $.ajax({
+        url: queryURL2,
+        method: "GET"
+    })
+    // Call to the Html and display on the front end 
+ 
 } 
 
 search.addEventListener("click", citySearch)
