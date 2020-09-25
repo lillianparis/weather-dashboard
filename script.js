@@ -19,10 +19,10 @@
 // Added in a document ready function
 $(document).ready(function () {
 
+  
     let input = document.getElementById("city-input");
     let search = document.getElementById("search");
     let cardTitle = document.getElementById("date");
-    let weatherPicture = document.getElementById("");
     let searchHistory = JSON.parse(localStorage.getItem("search")) || [];
 
     console.log(searchHistory);
@@ -41,6 +41,7 @@ $(document).ready(function () {
             console.log(response);
             // These calls, take input from the jumbotron and display them to the front end
             $("#nameOfCity").text(response.name);
+            $(".weatherIcon").attr("src", "https://openweathermap.org/img/wn/" + response.weather[0].icon + "@2x.png")
             let tempF = (response.main.temp - 273.15) * 1.80 + 32
             $("#temp").text("Temperature: " + Math.floor(tempF) + " °F")
 
@@ -50,15 +51,42 @@ $(document).ready(function () {
         });
         // Grabbing for the several day forecast that will be displayed in the cards in the HTML
 
-        let queryURL2 = "https://api.openweathermap.org/data/2.5/forecast?q=" + cardTitle + "&appid=" + APIKey;
+        let queryURL2 = "https://api.openweathermap.org/data/2.5/forecast?q=" + cityName + "&appid=" + APIKey;
         // Call to the second url so that multiple days can be displayed 
         $.ajax({
             url: queryURL2,
             method: "GET"
         })
-        console.log(cardTitle)
         // Call to the Html and display on the front end 
+        // .then(function (response) {
+        //     console.log(response);
+        //     let newrow = $("<div>").attr("class", "forecast");
+        //     $("#fivedayforecastt").append(newrow);
+        //     for (let i = 0; i < response.list.length; i++) {
+        //         if (response.list[i].dt_txt.indexOf("15:00:00") !== -1) {
+        //             let newCol = $("<div>").attr("class", "one-fifth");
+        //             newrow.append(newCol);
 
+        //             let newCard = $("<div>").attr("class", "card text-white bg-primary");
+        //             newCol.append(newCard);
+
+        //             let cardDate = $("<div>").attr("class", "card-header").text(moment(response.list[i].dt, "X").format("MMM Do"));
+        //             newCard.append(cardDate);
+
+        //             let cardImg = $("<img>").attr("class", "card-img-top").attr("src", "https://openweathermap.org/img/wn/" + response.list[i].weather[0].icon + "@2x.png");
+        //             newCard.append(cardImg);
+
+        //             let bodyDiv = $("<div>").attr("class", "card-body");
+        //             newCard.append(bodyDiv);
+
+        //             let tempF = Math.floor((response.list[i].main.temp - 273.15) * 1.80 + 32)
+        //             bodyDiv.append($("<p>").attr("class", "card-text").text("Temp: " + tempF + " °F"));
+        //             bodyDiv.append($("<p>").attr("class", "card-text").text("Humidity: " + response.list[i].main.humidity + "%"));
+        //             bodyDiv.append($("<p>").attr("class", "card-text").text("wind: " + response.list[i].wind.speed + " MPH"));
+        //         }
+        //     }
+            
+        // })
     }
 
     search.addEventListener("click", citySearch)
