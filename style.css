@@ -1,6 +1,9 @@
 #search {
-    border-color: blueviolet;
+    border-color: rgb(43, 144, 226);
 }
 .jumbotron {
-    background-color: white;
+    background-color: rgb(255, 255, 255);
+}
+#navbar {
+    background-color: darkcyan;
 }
